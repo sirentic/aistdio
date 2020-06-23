@@ -116,5 +116,5 @@ def upload_file6():
 
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', threaded=True, debug=True)
+    app.run(host='0.0.0.0', port='8000' threaded=True, debug=True)
     # app.run(host='112.220.94.202', port='6000', debug=True)
