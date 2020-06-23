@@ -1,0 +1,40 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+
+
+</div>
+<div class="body_box">
+    <div class="contents_box">
+        <img style="margin-top:50px;" src="{{ url_for('static', filename='/img/upload5.jpg') }}" width="780" />
+        <div class="upload_box">
+            <form action="/fileUpload5" method="POST" enctype="multipart/form-data" >
+                <label for="ex_file"><img src="{{ url_for('static', filename='/img/upload2.jpg') }}" /></label>
+                <input type = "file" id="ex_file" name = "file" onchange="this.form.submit()"/>
+<!--                <input type = "submit" />-->
+            </form>
+
+        </div>
+        <div class="bottom_wrap">
+            {% if not filename %}
+            <img style="margin-top:30px;" src="{{ url_for('static', filename='/img/book.png') }}", width="700" />
+            {% endif %}
+            {% if filename %}
+            <div class="bottom_item">
+                <img src="{{ url_for('static', filename=file_names) }}" width="500"/>
+            </div>
+            <div style="width:40px; height:300px; display:block;" class="bottom_item"></div>
+            <div style="background-image: url('/static/img/bg1.jpg');" class="bottom_item">
+                <img src="{{ url_for('static', filename=filename) }}" width="500"/>
+            </div>
+<!--            <div style="width:20px; height:300px; display:block;" class="bottom_item"></div>-->
+<!--            <div class="bottom_item">-->
+<!--                <img src="{{ url_for('static', filename=seg_file) }}" width="400"/>-->
+<!--            </div>-->
+            {% endif %}
+
+        </div>
+    </div>
+</div>
+{% endblock %}

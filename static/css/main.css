@@ -1,0 +1,52 @@
+@charset "utf-8";
+
+.top_box{
+		    height:63px;
+		    padding:10px 10px;
+		 }
+.body_box{
+    background:linear-gradient(#f4f4f4,white 50px);
+}
+.contents_box{
+    text-align:center;
+}
+.upload_box{
+    width:350px;
+    height:100px;
+    margin:30px auto 0;
+    border-radius: 20px 20px 0 0;
+    background-color:white;
+    text-align:center;
+}
+.bottom_wrap{
+    width:1040px;
+    margin:0 auto;
+}
+.bottom_wrap:after{
+    clear: both;
+}
+.bottom_wrap .bottom_item{
+    float: left;
+}
+input[type=submit] {
+    color:red;
+}
+.upload_box input[type="file"] {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip:rect(0,0,0,0);
+    border: 0;
+    }
+.menu_item{
+    float:left;
+    height:43px;
+    margin-left:40px;
+    font:bold 16px sans-serif;
+    color:#54616c;
+    text-align:right;
+    padding:20px 0 0 0;
+    }

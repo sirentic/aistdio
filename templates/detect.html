@@ -1,0 +1,29 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+</div>
+<div class="body_box">
+    <div class="contents_box">
+        <img style="margin-top:50px;" src="{{ url_for('static', filename='/img/upload3.jpg') }}" width="780"/>
+        <div class="upload_box">
+            <form action="/fileUpload6" method="POST" enctype="multipart/form-data" >
+                <label for="ex_file"><img src="{{ url_for('static', filename='/img/upload2.jpg') }}" /></label>
+                <input type = "file" id="ex_file" name = "file" onchange="this.form.submit()"/>
+            </form>
+
+        </div>
+        <div class="bottom_wrap" >
+            {% if not filename %}
+            <img src="{{ url_for('static', filename='/img/seg_intro.png') }}" width="1000"/>
+            {% endif %}
+            {% if filename %}
+            <div class="bottom_item" style="float:inherit;">
+                <img src="{{ url_for('static', filename=filename) }}" width="800"/>
+            </div>
+            {% endif %}
+
+        </div>
+    </div>
+</div>
+{% endblock %}

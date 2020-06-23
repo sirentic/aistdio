@@ -1,0 +1,56 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+</div>
+<div class="body_box">
+    <div class="contents_box">
+        <img style="margin-top:50px;" src="{{ url_for('static', filename='/img/upload4.jpg') }}" width="780"/>
+        {% if diff_ratio %}
+        <div><h1>The two images are {{ diff_ratio }}% similar.</h1></div>
+        {% endif %}
+        {% if not diff_ratio %}
+            {% if file_names %}
+        <div>Upload the second image you want to compare.</div>
+            {% endif %}
+        {% endif %}
+        {% if not file_names %}
+        <div>Upload the first image you want to compare.</div>
+        <div class="upload_box">
+            <form action="/fileUpload3" method="POST" enctype="multipart/form-data" >
+                <label for="ex_file"><img src="{{ url_for('static', filename='/img/upload2.jpg') }}" /></label>
+                <input type = "file" id="ex_file" name = "file" onchange="this.form.submit()"/>
+            </form>
+        </div>
+        <div class="bottom_wrap">
+            <img style="margin-top:30px;" src="{{ url_for('static', filename='/img/compare.jpeg') }}" />
+        {% endif %}
+        {% if file_names %}
+            {% if not diff_ratio %}
+        <div class="upload_box">
+            <form action="/fileUpload4" method="POST" enctype="multipart/form-data" >
+                <label for="ex_file2"><img src="{{ url_for('static', filename='/img/upload2.jpg') }}" /></label>
+                <input type = "file" id="ex_file2" name = "file" onchange="this.form.submit()"/>
+                <input type="hidden" name="file_names" value="{{ file_names }}">
+            </form>
+        </div>
+            {% endif %}
+            {% if diff_ratio %}
+            <div><a href="/image_compare"><img src="{{ url_for('static', filename='/img/replay.jpg') }}" /></a></div>
+            {% endif %}
+        <div class="bottom_wrap">
+            <div class="bottom_item">
+                <img src="{{ url_for('static', filename=file_names) }}" width="500"/>
+            </div>
+            {% if filename %}
+                <div style="width:40px; height:300px; display:block;" class="bottom_item"></div>
+                <div class="bottom_item">
+                <img src="{{ url_for('static', filename=filename) }}" width="500"/>
+                </div>
+            {% endif %}
+        {% endif %}
+
+        </div>
+    </div>
+</div>
+{% endblock %}

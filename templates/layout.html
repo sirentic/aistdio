@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AI STUDIO TOOLS</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+</head>
+<body>
+<div class="top_box">
+   <img style="float:left;" src="{{ url_for('static', filename='/img/logo.jpg') }}" />
+
+        <div class="menu_item">
+            <a href='/'>RemoveBG</a>
+        </div>
+        <div class="menu_item">
+            <a href="/detect2">Object Detection</a>
+        </div>
+        <div class="menu_item">
+            <a href="/object_detect">Segmentation</a>
+        </div>
+        <div class="menu_item">
+            <a href="/image_compare">Image Compare</a>
+        </div>
+        <div class="menu_item">
+            <a href="/text">Text Image</a>
+        </div>
+</div>
+
+{% block content %}{% endblock %}
+
+
+</body>
+</html>

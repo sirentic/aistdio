@@ -1,0 +1,10 @@
+*.pyc
+*~
+__pycache__
+/u2net/models
+/u2net/images
+/u2net/docs
+/detectron2
+/static/in_img
+/static/out_img
+/static/seg_img
