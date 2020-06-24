@@ -50,3 +50,6 @@ input[type=submit] {
     text-align:right;
     padding:20px 0 0 0;
     }
+a:link{color:#454545; text-decoration:none;}
+a:visited{color:#454545;text-decoration:none;}
+a:hover{color:#843c0c;text-decoration:none;}
