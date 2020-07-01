@@ -12,9 +12,9 @@
 }
 .upload_box{
     width:350px;
-    height:100px;
-    margin:30px auto 0;
-    border-radius: 20px 20px 0 0;
+    height:80px;
+    margin:20px auto;
+    border-radius: 20px 20px 0;
     background-color:white;
     text-align:center;
 }

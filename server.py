@@ -8,6 +8,7 @@ from util.file_save import file_save
 from util.text_ractangle import text_ractangle
 import cv2
 from util.predetection import detect
+from util.image_class import image_class
 
 
 app = Flask(__name__)
@@ -54,13 +55,15 @@ def upload_file2():
     if request.method == "POST":
         f = request.files['file']
         f.filename = file_save(f)
-        filename = os.path.splitext(f.filename)[0] + '.jpg'
+        filename = os.path.splitext(f.filename)[0] + '.png'
         mask = main.cli(os.path.join('static/in_img/', secure_filename(f.filename)), 'static/out_img/', 'u2net')
+        item, percentage = image_class(os.path.join('static/in_img/', f.filename))
         result = seg_map(mask, os.path.join('static/in_img/', f.filename))
-        result.save(os.path.join('static/seg_img/', filename))
+        result.save(os.path.join('static/seg_img/', f.filename))
         return render_template('object_detect.html',
                                file_names=os.path.join('in_img/', f.filename),
-                               seg_file=os.path.join('seg_img/', filename))
+                               seg_file=os.path.join('seg_img/', f.filename), item=item, percentage=percentage)
+
 
 
 @app.route('/fileUpload3', methods=['GET', 'POST'])
