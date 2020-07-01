@@ -1,6 +1,7 @@
 from torchvision import models, transforms
 import torch
 from PIL import Image
+import cv2
 
 def image_class(img1):
     resnet = models.resnet50(pretrained=True)
@@ -13,7 +14,8 @@ def image_class(img1):
         std=[0.229, 0.224, 0.225]
     )])
 
-    img = Image.open(img1)
+    img = cv2.imread(img1, cv2.COLOR_BGR2RGB)
+    img = Image.fromarray(img)
     img_t = transform(img)
     batch_t = torch.unsqueeze(img_t, 0)
 
