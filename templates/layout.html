@@ -7,8 +7,8 @@
 </head>
 <body>
 <div class="top_box">
-   <img style="float:left;" src="{{ url_for('static', filename='/img/logo.jpg') }}" />
-
+<!--   <img style="float:left;" src="{{ url_for('static', filename='/img/logo.jpg') }}" />-->
+    <img style="float:left;" src="static/img/logo.jpg" />
         <div class="menu_item">
             <a href='/'>RemoveBG</a>
         </div>
@@ -19,12 +19,15 @@
             <a href="/object_detect">Annotation</a>
         </div>
         <div class="menu_item">
-<!--    <div class="menu_item">
-            <a href="/image_compare">Image Compare</a>
+            <a href="#" onclick="window.open('http://suite.aistudio.co.kr/annotation/annotation?taskNumber=TSK00000000000000002&projectId=1593573589667b8dc6e86bb4911ea8989c8ddfc57bfb6','My Crowd', 'height=' + screen.height - + ',width=' + screen.width + 'fullscreen=yes'); return false" >2D Demo</a>
         </div>
         <div class="menu_item">
-            <a href="/text">Text Image</a>
-        </div> -->
+            <a href="#" onclick="window.open('http://suite.aistudio.co.kr/annotation/tool','My Crowd', 'height=' + screen.height - + ',width=' + screen.width + 'fullscreen=yes'); return false" >3D Demo</a>
+        </div>
+
+        <div class="menu_item">
+            <a href="#" onclick="window.open('/easy_work', 'easy work', 'width=1024, height=768, top=200, left=200 scroll=no' ); return false">Easy Work</a>
+        </div>
 </div>
 
 {% block content %}{% endblock %}

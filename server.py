@@ -28,7 +28,6 @@ def object_detect():
 def image_compare():
     return render_template('image_compare.html')
 
-
 @app.route('/text', methods=['GET', 'POST'])
 def text():
     return render_template('text.html')
@@ -36,6 +35,15 @@ def text():
 @app.route('/detect2', methods=['GET', 'POST'])
 def detect2():
     return render_template('detect.html')
+
+@app.route('/demo', methods=['GET', 'POST'])
+def demo():
+    return render_template('annotation.html')
+
+@app.route('/easy_work', methods=['GET', 'POST'])
+def easy_work():
+    return render_template('easy_work.html')
+
 
 
 @app.route('/fileUpload', methods=['GET', 'POST'])
@@ -57,7 +65,7 @@ def upload_file2():
         f.filename = file_save(f)
         filename = os.path.splitext(f.filename)[0] + '.png'
         mask = main.cli(os.path.join('static/in_img/', secure_filename(f.filename)), 'static/out_img/', 'u2net')
-        item, percentage = image_class(os.path.join('static/in_img/', f.filename))
+        item, percentage = image_class(os.path.join('static/out_img/', filename))
         result = seg_map(mask, os.path.join('static/in_img/', f.filename))
         result.save(os.path.join('static/seg_img/', f.filename))
         return render_template('object_detect.html',
