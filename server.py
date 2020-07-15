@@ -9,6 +9,7 @@ from util.text_ractangle import text_ractangle
 import cv2
 from util.predetection import detect
 from util.image_class import image_class
+from util.libs.box_seg import box_seg
 
 
 app = Flask(__name__)
@@ -42,9 +43,15 @@ def demo():
 
 @app.route('/easy_work', methods=['GET', 'POST'])
 def easy_work():
-    return render_template('easy_work.html')
+    if request.method == "POST":
+        xy_group = request.get_json()
+        xy_group = xy_group['xy_group']
+        img = os.path.join('static/img/', 'test_3.jpg')
+        xy_point = box_seg(xy_group,img)
+        return {"xy_point":xy_point}
 
-
+    elif request.method == "GET":
+        return render_template('easy_work.html')
 
 @app.route('/fileUpload', methods=['GET', 'POST'])
 def upload_file():

@@ -33,7 +33,7 @@ def box_seg(xy_group, img):
     # cv2.drawContours(frame, [seg_point], 0, (0, 255, 0), 2)
 
     x, y, w, h = cv2.boundingRect(seg_point)
-    cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 0, 255), 2)
+    # cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 0, 255), 2)
     xy_point = [x1+x, y1+y, w, h]
-    cv2.imwrite('output_test.jpg', frame)
+    # cv2.imwrite('output_test.jpg', frame)
     return xy_point
