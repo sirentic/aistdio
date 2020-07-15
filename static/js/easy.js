@@ -87,6 +87,7 @@ function send_xy(){
             success : function(result){
                 rectValue.push(result.xy_point);
                 after.push(result.xy_point);
+                $("#message").html("<h1>Click!!</h1>");
 
             },
             error : function(xtr,status,error){
