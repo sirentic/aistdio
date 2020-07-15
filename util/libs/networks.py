@@ -74,7 +74,7 @@ class U2NET:
             logger.debug("Loading a Unknown model!")
         try:
             if torch.cuda.is_available():
-                net.load_state_dict(torch.load(os.path.join("u2net/models", name, name + '.pth')))
+                net.load_state_dict(torch.load(os.path.join("../u2net/models", name, name + '.pth')))
                 net.cuda()
             else:
                 net.load_state_dict(torch.load(os.path.join("../u2net/models", name, name + '.pth'), map_location="cpu"))
