@@ -17,12 +17,34 @@ app = Flask(__name__)
 
 @app.route('/', methods=['GET', 'POST'])
 def homePage():
-    return render_template('index.html')
+    if request.method == "POST":
+        if request.method == "POST":
+            f = request.files['file']
+            f.filename = file_save(f)
+            filename = os.path.splitext(f.filename)[0] + '.png'
+            main.cli(os.path.join('static/in_img/', secure_filename(f.filename)), 'static/out_img/', 'u2net')
+            return render_template('index.html',
+                                   filename=os.path.join('out_img/', filename),
+                                   file_names=os.path.join('in_img/', f.filename))
+    elif request.method == "GET":
+        return render_template('index.html')
 
 
 @app.route('/object_detect', methods=['GET', 'POST'])
 def object_detect():
-    return render_template('object_detect.html')
+    if request.method == "POST":
+        f = request.files['file']
+        f.filename = file_save(f)
+        filename = os.path.splitext(f.filename)[0] + '.png'
+        mask = main.cli(os.path.join('static/in_img/', secure_filename(f.filename)), 'static/out_img/', 'u2net')
+        item, percentage = image_class(os.path.join('static/out_img/', filename))
+        result = seg_map(mask, os.path.join('static/in_img/', f.filename))
+        result.save(os.path.join('static/seg_img/', f.filename))
+        return render_template('object_detect.html',
+                               file_names=os.path.join('in_img/', f.filename),
+                               seg_file=os.path.join('seg_img/', f.filename), item=item, percentage=percentage)
+    elif request.method == "GET":
+        return render_template('object_detect.html')
 
 
 @app.route('/image_compare', methods=['GET', 'POST'])
@@ -35,7 +57,17 @@ def text():
 
 @app.route('/detect2', methods=['GET', 'POST'])
 def detect2():
-    return render_template('detect.html')
+    if request.method == "POST":
+        f = request.files['file']
+        f.filename = file_save(f)
+        filename = os.path.splitext(f.filename)[0] + '.jpg'
+        img2 = detect(os.path.join('static/in_img/', f.filename))
+        cv2.imwrite(os.path.join('static/out_img/', filename), img2)
+        return render_template('detect.html',
+                               filename=os.path.join('out_img/', filename),
+                               file_names=os.path.join('in_img/', f.filename))
+    elif request.method == "GET":
+        return render_template('detect.html')
 
 @app.route('/demo', methods=['GET', 'POST'])
 def demo():
@@ -52,34 +84,6 @@ def easy_work():
 
     elif request.method == "GET":
         return render_template('easy_work.html')
-
-@app.route('/fileUpload', methods=['GET', 'POST'])
-def upload_file():
-    if request.method == "POST":
-        f = request.files['file']
-        f.filename = file_save(f)
-        filename = os.path.splitext(f.filename)[0] + '.png'
-        main.cli(os.path.join('static/in_img/', secure_filename(f.filename)), 'static/out_img/', 'u2net')
-        return render_template('index.html',
-                               filename=os.path.join('out_img/', filename),
-                               file_names=os.path.join('in_img/', f.filename))
-
-
-@app.route('/fileUpload2', methods=['GET', 'POST'])
-def upload_file2():
-    if request.method == "POST":
-        f = request.files['file']
-        f.filename = file_save(f)
-        filename = os.path.splitext(f.filename)[0] + '.png'
-        mask = main.cli(os.path.join('static/in_img/', secure_filename(f.filename)), 'static/out_img/', 'u2net')
-        item, percentage = image_class(os.path.join('static/out_img/', filename))
-        result = seg_map(mask, os.path.join('static/in_img/', f.filename))
-        result.save(os.path.join('static/seg_img/', f.filename))
-        return render_template('object_detect.html',
-                               file_names=os.path.join('in_img/', f.filename),
-                               seg_file=os.path.join('seg_img/', f.filename), item=item, percentage=percentage)
-
-
 
 @app.route('/fileUpload3', methods=['GET', 'POST'])
 def upload_file3():
@@ -118,19 +122,6 @@ def upload_file5():
         return render_template('text.html',
                                filename=os.path.join('out_img/', filename),
                                file_names=os.path.join('in_img/', filename))
-
-@app.route('/fileUpload6', methods=['GET', 'POST'])
-def upload_file6():
-    if request.method == "POST":
-        f = request.files['file']
-        f.filename = file_save(f)
-        filename = os.path.splitext(f.filename)[0] + '.jpg'
-        img2 = detect(os.path.join('static/in_img/', f.filename))
-        cv2.imwrite(os.path.join('static/out_img/', filename), img2)
-
-        return render_template('detect.html',
-                               filename=os.path.join('out_img/', filename),
-                               file_names=os.path.join('in_img/', f.filename))
 
 
 if __name__ == "__main__":

@@ -6,7 +6,7 @@
     <div class="contents_box">
         <img style="margin-top:50px;" src="{{ url_for('static', filename='/img/upload6.jpg') }}" width="500"/>
         <div class="upload_box">
-            <form action="/fileUpload2" method="POST" enctype="multipart/form-data" >
+            <form action="/object_detect" method="POST" enctype="multipart/form-data" >
                 <label for="ex_file"><img src="{{ url_for('static', filename='/img/upload2.jpg') }}"/></label>
                 <input type = "file" id="ex_file" name = "file" onchange="this.form.submit()"/>
 <!--                <input type = "submit" />-->
